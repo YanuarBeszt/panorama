@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panorama linking View</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <script src="js/main.js"></script> -->
+</head>
+
+<body>
+    <div id="container"></div>
+    <script src="js/three.min.js"></script>
+    <script src="js/panolens.min.js"></script>
+    <script>
+        var panorama, panorama2, viewer, container, infospot;
+
+        container = document.querySelector("#container");
+
+        panorama = new PANOLENS.ImagePanorama(
+            "assets/img/bg-2.png"
+        );
+        panorama2 = new PANOLENS.ImagePanorama(
+            "assets/img/booth2.png"
+        );
+
+        viewer = new PANOLENS.Viewer({
+            container: container
+        });
+        viewer.add(panorama);
+        viewer.add(panorama2);
+
+        panorama.link(panorama2, new THREE.Vector3(1000, -3500, -5000));
+        panorama2.link(panorama, new THREE.Vector3(-100, -500, -5000));
+    </script>
+</body>
+
+</html>
